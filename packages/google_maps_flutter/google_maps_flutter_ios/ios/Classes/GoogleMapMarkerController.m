@@ -119,7 +119,7 @@
 }
 
 - (void)setVisibleOption:(NSDictionary *)data {
-  NSNumber *visible = data[@"visible"];
+  NSNumber *visible = FGMGetValueOrNilFromDict(data, @"visible");
   if (visible && visible != (id)[NSNull null]) {
     BOOL visibleBool = [visible boolValue];
     if ((self.marker.map != nil) != visibleBool) {
@@ -173,10 +173,6 @@
   NSNumber *zIndex = FGMGetValueOrNilFromDict(data, @"zIndex");
   if (zIndex) {
     [self setZIndex:[zIndex intValue]];
-  }
-  NSNumber *visible = FGMGetValueOrNilFromDict(data, @"visible");
-  if (visible) {
-    [self setVisible:[visible boolValue]];
   }
 }
 
