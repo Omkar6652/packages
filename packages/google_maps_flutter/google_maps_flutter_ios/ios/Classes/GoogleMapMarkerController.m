@@ -28,6 +28,18 @@
   return self;
 }
 
+- (instancetype)initWithMarker:(GMSMarker *)marker
+                    identifier:(NSString *)identifier
+                       mapView:(GMSMapView *)mapView {
+  self = [super init];
+  if (self) {
+    _marker = marker;
+    _mapView = mapView;
+    _marker.userData = @[ identifier ];
+  }
+  return self;
+}
+
 - (void)showInfoWindow {
   self.mapView.selectedMarker = self.marker;
 }
@@ -161,6 +173,10 @@
   NSNumber *zIndex = FGMGetValueOrNilFromDict(data, @"zIndex");
   if (zIndex) {
     [self setZIndex:[zIndex intValue]];
+  }
+  NSNumber *visible = FGMGetValueOrNilFromDict(data, @"visible");
+  if (visible) {
+    [self setVisible:[visible boolValue]];
   }
 }
 
