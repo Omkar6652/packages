@@ -135,6 +135,7 @@
 
 - (void)interpretMarkerOptions:(NSDictionary *)data
                      iconCache:(GoogleMapMarkerIconCache *) iconCache {
+  /*
   NSNumber *alpha = FGMGetValueOrNilFromDict(data, @"alpha");
   if (alpha) {
     [self setAlpha:[alpha floatValue]];
@@ -147,11 +148,13 @@
   if (draggable) {
     [self setDraggable:[draggable boolValue]];
   }
+   */
   NSArray *icon = FGMGetValueOrNilFromDict(data, @"icon");
   if (icon) {
     UIImage *image = [iconCache getImage:icon];
     [self setIcon:image];
   }
+  /*
   NSNumber *flat = FGMGetValueOrNilFromDict(data, @"flat");
   if (flat) {
     [self setFlat:[flat boolValue]];
@@ -161,10 +164,12 @@
     [self setConsumeTapEvents:[consumeTapEvents boolValue]];
   }
   [self interpretInfoWindow:data];
+   */
   NSArray *position = FGMGetValueOrNilFromDict(data, @"position");
   if (position) {
     [self setPosition:[FLTGoogleMapJSONConversions locationFromLatLong:position]];
   }
+  /*
   NSNumber *rotation = FGMGetValueOrNilFromDict(data, @"rotation");
   if (rotation) {
     [self setRotation:[rotation doubleValue]];
@@ -173,6 +178,7 @@
   if (zIndex) {
     [self setZIndex:[zIndex intValue]];
   }
+   */
 }
 
 - (void)interpretInfoWindow:(NSDictionary *)data {
