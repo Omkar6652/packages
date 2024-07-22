@@ -338,6 +338,7 @@
         double next = 0;
         double add0 = 0;
         double add1 = 0;
+        NSUInteger numIter = 0;
         for (FGMPlatformMarker *marker in batch) {
           last = [timer timeElapsedInMilliseconds];
           NSString *identifier = marker.json[@"markerId"];
@@ -356,6 +357,8 @@
           next = [timer timeElapsedInMilliseconds];
           add1 += next - last;
           last = next;
+          
+          numIter += 1;
         }
         
         double total = [timer timeElapsedInMilliseconds];
@@ -363,6 +366,7 @@
         NSLog(@"batch1: %f", add1);
         NSLog(@"batchTotal: %f", total);
         NSLog(@"batchCount: %lu", [batch count]);
+        NSLog(@"numIter: %lu", numIter);
         start += count;
       }
       
