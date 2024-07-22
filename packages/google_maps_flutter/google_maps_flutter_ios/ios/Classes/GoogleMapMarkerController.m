@@ -317,6 +317,17 @@
       Timer* timer = [[Timer alloc] init];
       [timer startTimer];
       
+      for (FGMPlatformMarker *marker in markersToAdd) {
+        NSString *identifier = marker.json[@"markerId"];
+        
+        FLTGoogleMapMarkerController *controller = self.markerIdentifierToController[identifier];
+        
+        if (!controller) {
+          return;
+        }
+        [controller setVisibleOption:marker.json];
+      }
+      /*
       NSUInteger batchSize = 200;
       NSUInteger start = 0;
       NSUInteger total = [markersToAdd count];
@@ -369,6 +380,7 @@
         NSLog(@"numIter: %lu", numIter);
         start += count;
       }
+      */
       
       double elapsed = [timer timeElapsedInMilliseconds];
       NSLog(@"addUI: %f", elapsed);
