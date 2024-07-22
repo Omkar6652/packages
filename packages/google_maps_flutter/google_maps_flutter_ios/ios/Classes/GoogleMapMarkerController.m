@@ -85,9 +85,7 @@
 }
 
 - (void)setIcon:(UIImage *)icon {
-  if (self.marker.icon != icon) {
-    self.marker.icon = icon;
-  }
+  self.marker.icon = icon;
 }
 
 - (void)setInfoWindowAnchor:(CGPoint)anchor {
